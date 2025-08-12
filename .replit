@@ -1,0 +1,15 @@
+run = "bash -lc 'pnpm install --no-frozen-lockfile && pnpm run build && NODE_ENV=production pnpm start'"
+hidden = [".pnpm-store"]
+entrypoint = "package.json"
+
+[deployment]
+build = "bash -lc 'pnpm install --no-frozen-lockfile && pnpm run build'"
+run = "bash -lc 'NODE_ENV=production pnpm start'"
+ignorePorts = false
+
+[env]
+# Replit provides PORT automatically. RSSHub reads PORT from env.
+# LISTEN_INADDR_ANY defaults to true in RSSHub, so no need to set it here.
+# Uncomment to force it explicitly:
+# LISTEN_INADDR_ANY = "1"
+
