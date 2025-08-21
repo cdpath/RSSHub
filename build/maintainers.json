@@ -254,6 +254,9 @@
     "nczitzk",
     "cscnk52"
   ],
+  "/6v123/:category{.+}?": [
+    "nczitzk"
+  ],
   "/6v123/latestMovies": [
     "tc9011"
   ],
@@ -1119,6 +1122,9 @@
   "/bookfere/:category": [
     "OdinZhang"
   ],
+  "/bookwalker/search/:filter?": [
+    "nczitzk"
+  ],
   "/booru/mmda/tags/:tags?": [
     "N78Wy"
   ],
@@ -1733,6 +1739,9 @@
   "/comicskingdom/:name": [
     "stjohnjohnson"
   ],
+  "/commonhealth/": [
+    "johan456789"
+  ],
   "/consumer/:category?/:language?/:keyword?": [
     "nczitzk"
   ],
@@ -2068,6 +2077,9 @@
     "blade0910"
   ],
   "/dgjyw*": [],
+  "/dgut/jwb/:type?": [
+    "1200522928"
+  ],
   "/dhu/jiaowu/news/:type?": [
     "KiraKiseki"
   ],
@@ -2474,6 +2486,9 @@
   "/elsevier/:journal": [],
   "/embassy/:country/:city?": [
     "HenryQW"
+  ],
+  "/englishhome/": [
+    "johan456789"
   ],
   "/enterprisecraftsmanship/archives": [
     "liyaozhong"
@@ -3045,6 +3060,9 @@
   ],
   "/gitpod/changelog": [
     "TonyRL"
+  ],
+  "/gitstar-ranking/:category?": [
+    "nczitzk"
   ],
   "/globallawreview/": [
     "nczitzk"
@@ -4076,6 +4094,9 @@
   "/imiker/ask/jinghua": [
     "nczitzk"
   ],
+  "/immich/cursed-knowledge": [
+    "TonyRL"
+  ],
   "/imop/tianshu": [
     "zhkgo"
   ],
@@ -5102,6 +5123,9 @@
   "/mihoyo/ys/:location?/:category?": [
     "nczitzk"
   ],
+  "/mihoyo/zzz/:location?/:category?": [
+    "Yeye-0426"
+  ],
   "/mindmeister/:category?/:language?": [
     "TonyRL"
   ],
@@ -5541,6 +5565,9 @@
   ],
   "/nintendo/system-update": [
     "hoilc"
+  ],
+  "/nio/nioradio/:albumid": [
+    "marcosteam"
   ],
   "/nippon/:category?": [
     "laampui"
@@ -6772,6 +6799,9 @@
   "/scoop/apps/:query?": [
     "nczitzk"
   ],
+  "/scpta/news/:category": [
+    "Yeye-0426"
+  ],
   "/sctv/programme/:id?/:limit?/:isFull?": [
     "nczitzk"
   ],
@@ -7022,6 +7052,9 @@
   ],
   "/shu/journals/society/current": [
     "CNYoki"
+  ],
+  "/shu/xxgk/:type?": [
+    "GhhG123"
   ],
   "/shu/xykd/:type?": [
     "GhhG123"
@@ -8714,6 +8747,9 @@
   ],
   "/xunhupay/blog": [
     "Joey"
+  ],
+  "/xwenming/:category?": [
+    "nczitzk"
   ],
   "/xys/new": [
     "wenzhenl"
