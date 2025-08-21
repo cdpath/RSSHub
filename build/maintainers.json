@@ -3692,8 +3692,8 @@
     "crispgm",
     "akashigakki"
   ],
-  "/hipda/latest": [
-    "jingyi"
+  "/hipda/forum/:fid?": [
+    "cdpath"
   ],
   "/hiring.cafe/jobs/:keywords": [
     "mintyfrankie"
