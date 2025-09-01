@@ -5548,6 +5548,7 @@
         "title": "播客",
         "docs": "https://docs.rsshub.app/routes/multimedia",
         "source": [
+          "/:region/podcast/:showName/:id",
           "/:region/podcast/:id"
         ],
         "target": "/apple/podcast/:id/:region?"
@@ -7136,6 +7137,19 @@
       }
     ]
   },
+  "bestofjs.org": {
+    "_name": "Best of JS",
+    ".": [
+      {
+        "title": "Monthly Rankings",
+        "docs": "https://docs.rsshub.app/routes/programming",
+        "source": [
+          "/rankings/monthly/:year/:month"
+        ],
+        "target": "/bestofjs/rankings/monthly"
+      }
+    ]
+  },
   "bfl.ai": {
     "_name": "BFL AI",
     ".": [
@@ -7677,6 +7691,19 @@
           "/berita"
         ],
         "target": "/bmkg/news"
+      }
+    ]
+  },
+  "bnext.com.tw": {
+    "_name": "數位時代 BusinessNext",
+    "www": [
+      {
+        "title": "最新文章",
+        "docs": "https://docs.rsshub.app/routes/traditional-media",
+        "source": [
+          "/"
+        ],
+        "target": "/bnext/bnext"
       }
     ]
   },
@@ -8832,6 +8859,59 @@
       }
     ]
   },
+  "cbndata.com": {
+    "_name": "CBNData",
+    "www": [
+      {
+        "title": "看点",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/information"
+        ],
+        "target": "/cbndata(params,url)=>{const urlObj=new URL(url);const id=urlObj.searchParams.get(\"tag_id\")??void 0;return`/information${id?`/${id}`:\"\"}`}"
+      },
+      {
+        "title": "全部",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/information"
+        ],
+        "target": "/cbndata/information/all"
+      },
+      {
+        "title": "美妆个护",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/information"
+        ],
+        "target": "/cbndata/information/1"
+      },
+      {
+        "title": "服饰鞋包",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/information"
+        ],
+        "target": "/cbndata/information/2559"
+      },
+      {
+        "title": "宠物",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/information"
+        ],
+        "target": "/cbndata/information/2419"
+      },
+      {
+        "title": "营销",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/information"
+        ],
+        "target": "/cbndata/information/2484"
+      }
+    ]
+  },
   "cbnweek.com": {
     "_name": "第一财经杂志",
     ".": [
@@ -9483,6 +9563,35 @@
           "/portal/cn/fangyizhuanqu_list.jsp"
         ],
         "target": "/ccfa/40"
+      }
+    ]
+  },
+  "ccg.org.cn": {
+    "_name": "全球化智库",
+    "www": [
+      {
+        "title": "动态",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/category"
+        ],
+        "target": "/ccg/:category"
+      },
+      {
+        "title": "新闻动态",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/news"
+        ],
+        "target": "/ccg/news"
+      },
+      {
+        "title": "媒体报道",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/mtbd"
+        ],
+        "target": "/ccg/mtbd"
       }
     ]
   },
@@ -11095,6 +11204,20 @@
           "/index/jstz.htm"
         ],
         "target": "/cjlu/yjsy/jstz"
+      }
+    ]
+  },
+  "cline.bot": {
+    "_name": "cline",
+    ".": [
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/blog",
+        "source": [
+          "/blog/archive",
+          "/blog"
+        ],
+        "target": "/cline/blog"
       }
     ]
   },
@@ -14085,6 +14208,19 @@
       }
     ]
   },
+  "engineering.fyi": {
+    "_name": "Engineering.fyi",
+    ".": [
+      {
+        "title": "Tag",
+        "docs": "https://docs.rsshub.app/routes/programming",
+        "source": [
+          "/tag/:tag"
+        ],
+        "target": "/engineering/tag/:tag"
+      }
+    ]
+  },
   "englishhome.org": {
     "_name": "英語之家",
     ".": [
@@ -14187,6 +14323,32 @@
       }
     ]
   },
+  "eventbrite.com": {
+    "_name": "Eventbrite",
+    ".": [
+      {
+        "title": "Events",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/d/:region/:eventType"
+        ],
+        "target": "/eventbrite/:region/:eventType"
+      }
+    ]
+  },
+  "eventbrite.ca": {
+    "_name": "Eventbrite",
+    ".": [
+      {
+        "title": "Events",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/d/:region/:eventType"
+        ],
+        "target": "/eventbrite/:region/:eventType"
+      }
+    ]
+  },
   "eventernote.com": {
     "_name": "Eventernote",
     "www": [
@@ -14194,6 +14356,7 @@
         "title": "声优活动及演唱会",
         "docs": "https://docs.rsshub.app/routes/anime",
         "source": [
+          "/actors/:name/:id",
           "/actors/:name/:id/events"
         ],
         "target": "/eventernote/actors/:name/:id"
@@ -17447,6 +17610,14 @@
           "/gk/sgcc/:category"
         ],
         "target": "/gov/mem/gk/sgcc/:category"
+      },
+      {
+        "title": "法定主动公开内容",
+        "docs": "https://docs.rsshub.app/routes/government",
+        "source": [
+          "/gk/zfxxgkpt/fdzdgknr"
+        ],
+        "target": "/gov/mem/gk/zfxxgkpt/fdzdgknr"
       }
     ]
   },
@@ -23266,6 +23437,14 @@
           "/:source/user/:id/fancards"
         ],
         "target": "/kemono/:source/:id/fancards"
+      },
+      {
+        "title": "Posts",
+        "docs": "https://docs.rsshub.app/routes/anime",
+        "source": [
+          "/discord/server/:id"
+        ],
+        "target": "/kemono/discord/:id"
       }
     ]
   },
@@ -23417,6 +23596,147 @@
           "/kitty/changelog/"
         ],
         "target": "/kovidgoyal/kitty/changelog"
+      }
+    ]
+  },
+  "koyso.to": {
+    "_name": "Koyso",
+    ".": [
+      {
+        "title": "游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso(_,url)=>{const urlObj=new URL(url);const category=urlObj.searchParams.get(\"category\")??void 0;const sort=urlObj.searchParams.get(\"sort\")??void 0;return`/koyso${category?`/${category}`:\"0\"}${sort?`/${sort}`:\"\"}`}"
+      },
+      {
+        "title": "全部游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/0"
+      },
+      {
+        "title": "动作游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/3"
+      },
+      {
+        "title": "冒险游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/5"
+      },
+      {
+        "title": "绅士游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/7"
+      },
+      {
+        "title": "射击游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/1"
+      },
+      {
+        "title": "休闲游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/2"
+      },
+      {
+        "title": "体育竞速",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/4"
+      },
+      {
+        "title": "模拟经营",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/6"
+      },
+      {
+        "title": "角色扮演",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/8"
+      },
+      {
+        "title": "策略游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/9"
+      },
+      {
+        "title": "格斗游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/10"
+      },
+      {
+        "title": "恐怖游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/11"
+      },
+      {
+        "title": "即时战略",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/12"
+      },
+      {
+        "title": "卡牌游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/13"
+      },
+      {
+        "title": "独立游戏",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/14"
+      },
+      {
+        "title": "局域网联机",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/koyso/15"
       }
     ]
   },
@@ -29133,6 +29453,14 @@
     "_name": "Niconico",
     "www": [
       {
+        "title": "Mylist",
+        "docs": "https://docs.rsshub.app/routes/multimedia",
+        "source": [
+          "/user/:user/mylist/:id"
+        ],
+        "target": "/nicovideo/mylist/:id"
+      },
+      {
         "title": "User Videos",
         "docs": "https://docs.rsshub.app/routes/multimedia",
         "source": [
@@ -34227,6 +34555,19 @@
       }
     ]
   },
+  "secretsanfrancisco.com": {
+    "_name": "Secret San francisco",
+    ".": [
+      {
+        "title": "Category",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/:category"
+        ],
+        "target": "/secretsanfrancisco/:category"
+      }
+    ]
+  },
   "seekingalpha.com": {
     "_name": "Seeking Alpha",
     ".": [
@@ -38147,7 +38488,7 @@
     "_name": "TechPowerUp",
     ".": [
       {
-        "title": "Unknown",
+        "title": "Latest Content",
         "docs": "https://docs.rsshub.app/routes/new-media",
         "source": [
           "/"
@@ -38158,7 +38499,8 @@
         "title": "Reviews",
         "docs": "https://docs.rsshub.app/routes/new-media",
         "source": [
-          "/"
+          "/review/search",
+          "/review"
         ],
         "target": "/techpowerup/review/:keyword?"
       }
@@ -38375,6 +38717,19 @@
           "/newsflash"
         ],
         "target": "/theblockbeats/newsflash"
+      }
+    ]
+  },
+  "thegadgetflow.com": {
+    "_name": "Gadget Flow",
+    ".": [
+      {
+        "title": "Category",
+        "docs": "https://docs.rsshub.app/routes/shopping",
+        "source": [
+          "/categories/:category"
+        ],
+        "target": "/thegadgetflow/:category"
       }
     ]
   },
@@ -39251,6 +39606,19 @@
           "/"
         ],
         "target": "/transformer-circuits/"
+      }
+    ]
+  },
+  "trendforce.com": {
+    "_name": "TrendForce",
+    "www": [
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/news/"
+        ],
+        "target": "/trendforce/news"
       }
     ]
   },

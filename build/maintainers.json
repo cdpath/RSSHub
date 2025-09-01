@@ -834,6 +834,9 @@
   "/bestblogs/feeds/:category?": [
     "zhenlohuang"
   ],
+  "/bestofjs/rankings/monthly": [
+    "ztkuaikuai"
+  ],
   "/bfl/announcements": [
     "thirteenkai"
   ],
@@ -1099,6 +1102,9 @@
   "/bmkg/news": [
     "Shinanory"
   ],
+  "/bnext/": [
+    "johan456789"
+  ],
   "/bnu/bs/:category?": [
     "nczitzk"
   ],
@@ -1332,6 +1338,9 @@
   "/cbirc/:category?": [
     "JkCheung"
   ],
+  "/cbndata/information/:id?": [
+    "nczitzk"
+  ],
   "/cbnweek/": [
     "nczitzk"
   ],
@@ -1357,6 +1366,9 @@
     "tudou027"
   ],
   "/ccfa/:type?": [
+    "nczitzk"
+  ],
+  "/ccg/:category?": [
     "nczitzk"
   ],
   "/ccnu/career": [
@@ -2496,6 +2508,9 @@
   "/embassy/:country/:city?": [
     "HenryQW"
   ],
+  "/engineering/tag/:tag": [
+    "suhang-only"
+  ],
   "/englishhome/": [
     "johan456789"
   ],
@@ -2524,6 +2539,9 @@
   ],
   "/europechinese/latest": [
     "emdoe"
+  ],
+  "/eventbrite/:region/:eventType?/:includePromoted?": [
+    "elibroftw"
   ],
   "/eventernote/actors/:name/:id": [
     "KTachibanaM"
@@ -3258,6 +3276,9 @@
   ],
   "/gov/mem/gk/sgcc/:category?": [
     "nczitzk"
+  ],
+  "/gov/mem/gk/zfxxgkpt/fdzdgknr": [
+    "skeaven"
   ],
   "/gov/fmprc/:category?": [
     "nicolaszf",
@@ -4657,6 +4678,9 @@
   "/kovidgoyal/kitty/changelog": [
     "xbot"
   ],
+  "/koyso/:category?/:sort?": [
+    "nczitzk"
+  ],
   "/kpmg/insights/:lang?": [
     "LogicJake"
   ],
@@ -5543,6 +5567,9 @@
   ],
   "/niaogebiji/today": [
     "KotoriK"
+  ],
+  "/nicovideo/mylist/:id": [
+    "esperecyan"
   ],
   "/nicovideo/user/:id/video/:embed?": [
     "TonyRL"
@@ -6911,6 +6938,9 @@
   "/sec-wiki/weekly": [
     "p7e4"
   ],
+  "/secretsanfrancisco/:category?": [
+    "EthanWng97"
+  ],
   "/secrss/author/:author": [
     "XinRoom",
     "SunBK201"
@@ -7709,6 +7739,9 @@
   "/thecover/channel/:id?": [
     "yuxinliu-alex"
   ],
+  "/thegadgetflow/:category?": [
+    "EthanWng97"
+  ],
   "/thegradient/posts": [
     "liyaozhong"
   ],
@@ -7936,6 +7969,9 @@
   ],
   "/transformer-circuits/": [
     "shinmohuang"
+  ],
+  "/trendforce/news": [
+    "nczitzk"
   ],
   "/trendingpapers/papers/:category?/:time?/:cited?": [
     "CookiePieWw"
