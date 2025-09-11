@@ -59,7 +59,7 @@ const handler = async (ctx: Context): Promise<Data> => {
                     title,
                     link: link.startsWith('http') ? link : `${baseUrl}${link}`,
                     description: image ? `<img src="${image}" alt="${title}"><br>${title}` : title,
-                    author: media,
+                    author: '腾讯科技',
                     pubDate: pubDate?.toUTCString(),
                     guid: link,
                 });
