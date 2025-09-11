@@ -21,6 +21,9 @@
   "/163/renjian/:category?": [
     "nczitzk"
   ],
+  "/163/tech": [
+    "user"
+  ],
   "/163/today/:need_content?": [
     "nczitzk"
   ],
@@ -6534,6 +6537,9 @@
   ],
   "/qoo-app/user/:lang?/appComment/:uid": [
     "TonyRL"
+  ],
+  "/qq/tech": [
+    "DIYgod"
   ],
   "/qq/ac/comic/:id?": [],
   "/qq/ac/rank/:type?/:time?": [
