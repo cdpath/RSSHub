@@ -8,44 +8,44 @@ import { type Context } from 'hono';
 const handler = async (ctx: Context): Promise<Data> => {
     const baseUrl = 'https://tech.163.com';
     const techUrl = baseUrl;
-    
+
     const browser = await puppeteer();
     const page = await browser.newPage();
-    
+
     try {
         await page.goto(techUrl, {
             waitUntil: 'networkidle2',
             timeout: 30000
         });
-        
+
         // Wait for the news list to load
         await page.waitForSelector('.newsdata_wrap', { timeout: 10000 });
-        
+
         const html = await page.content();
         await browser.close();
-        
+
         const $ = load(html);
         const items = [];
-        
+
         $('.newsdata_wrap .newsdata_list .data_row.news_article').each((_, element) => {
             const $item = $(element);
-            
+
             const titleElement = $item.find('.news_title h3 a');
             const imageElement = $item.find('.na_pic img');
             const categoryElement = $item.find('.news_tag .barlink a');
             const timeElement = $item.find('.news_tag .time');
-            
+
             const title = titleElement.text().trim();
             const link = titleElement.attr('href');
             const image = imageElement.attr('src');
             const category = categoryElement.text().trim();
             const timeText = timeElement.text().trim();
-            
+
             if (title && link) {
                 // Parse relative time using RSSHub utility
                 const parsedDate = parseRelativeDate(timeText);
                 const pubDate = parsedDate instanceof Date ? parsedDate : parseDate(timeText);
-                
+
                 items.push({
                     title,
                     link: link.startsWith('http') ? link : `https:${link}`,
@@ -56,7 +56,7 @@ const handler = async (ctx: Context): Promise<Data> => {
                 });
             }
         });
-        
+
         return {
             title: '网易科技',
             link: techUrl,
@@ -70,11 +70,11 @@ const handler = async (ctx: Context): Promise<Data> => {
 };
 
 export const route: Route = {
-    path: '/tech',
+    path: '/news/tech',
     name: '网易科技',
     maintainers: ['user'],
     handler,
-    example: '/163/tech',
+    example: '/163/news/tech',
     categories: ['new-media', 'popular'],
     features: {
         requireConfig: false,
@@ -89,7 +89,7 @@ export const route: Route = {
     radar: [
         {
             source: ['tech.163.com/'],
-            target: '/163/tech',
+            target: '/163/news/tech',
         },
     ],
     view: ViewType.Articles,

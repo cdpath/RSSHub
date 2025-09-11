@@ -8,45 +8,45 @@ import { type Context } from 'hono';
 const handler = async (ctx: Context): Promise<Data> => {
     const baseUrl = 'https://news.qq.com';
     const techUrl = `${baseUrl}/ch/tech/`;
-    
+
     const browser = await puppeteer();
     const page = await browser.newPage();
-    
+
     try {
         await page.goto(techUrl, {
             waitUntil: 'networkidle2',
             timeout: 30000
         });
-        
+
         // Wait for the news list to load
         await page.waitForSelector('.channel-feed-list', { timeout: 10000 });
-        
+
         const html = await page.content();
         await browser.close();
-        
+
         const $ = load(html);
         const items = [];
-        
+
         $('.channel-feed-item').each((_, element) => {
             const $item = $(element);
-            
+
             const titleElement = $item.find('.article-title-text');
             const linkElement = $item.find('.article-title');
             const imageElement = $item.find('.article-picture');
             const mediaElement = $item.find('.media-name');
             const timeElement = $item.find('.time');
-            
+
             const title = titleElement.text().trim();
             const link = linkElement.attr('href');
             const image = imageElement.attr('src');
             const media = mediaElement.text().trim();
             const timeText = timeElement.text().trim();
-            
+
             if (title && link) {
                 // Parse relative time using RSSHub utility
                 const parsedDate = parseRelativeDate(timeText);
                 const pubDate = parsedDate instanceof Date ? parsedDate : parseDate(timeText);
-                
+
                 items.push({
                     title,
                     link: link.startsWith('http') ? link : `${baseUrl}${link}`,
@@ -57,7 +57,7 @@ const handler = async (ctx: Context): Promise<Data> => {
                 });
             }
         });
-        
+
         return {
             title: '腾讯新闻科技频道',
             link: techUrl,
@@ -71,11 +71,11 @@ const handler = async (ctx: Context): Promise<Data> => {
 };
 
 export const route: Route = {
-    path: '/tech',
+    path: '/news/tech',
     name: '腾讯新闻科技',
     maintainers: ['DIYgod'],
     handler,
-    example: '/qq/tech',
+    example: '/qq/news/tech',
     categories: ['new-media', 'popular'],
     features: {
         requireConfig: false,
@@ -90,7 +90,7 @@ export const route: Route = {
     radar: [
         {
             source: ['news.qq.com/ch/tech/'],
-            target: '/qq/tech',
+            target: '/qq/news/tech',
         },
     ],
     view: ViewType.Articles,
