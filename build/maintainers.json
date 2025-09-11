@@ -1785,6 +1785,15 @@
   "/coolapk/user/:uid/dynamic": [
     "xizeyoupan"
   ],
+  "/coolbuy/": [
+    "nczitzk"
+  ],
+  "/coolidge/film-guide": [
+    "johan456789"
+  ],
+  "/coolidge/news": [
+    "johan456789"
+  ],
   "/coolpc/news": [
     "david90103"
   ],
@@ -3338,7 +3347,8 @@
     "TonyRL"
   ],
   "/gov/mot/:category{.+}?": [
-    "ladeng07"
+    "ladeng07",
+    "nczitzk"
   ],
   "/gov/ndrc/fggz/:category{.+}?": [
     "nczitzk"
@@ -3721,9 +3731,6 @@
   "/hinatazaka46/news": [
     "crispgm",
     "akashigakki"
-  ],
-  "/hipda/forum/:fid?": [
-    "cdpath"
   ],
   "/hiring.cafe/jobs/:keywords": [
     "mintyfrankie"
@@ -4385,6 +4392,9 @@
   ],
   "/javtrailers/studios/:studio": [
     "TonyRL"
+  ],
+  "/jbma/report/:filter{.+}?": [
+    "nczitzk"
   ],
   "/jd/price/:id": [
     "nczitzk"
@@ -5349,6 +5359,9 @@
   ],
   "/mysql/release/:version?": [
     "nczitzk"
+  ],
+  "/nankai/ai/:type?": [
+    "LMark"
   ],
   "/nankai/cc/:type?": [
     "vicguo0724"
@@ -6888,6 +6901,27 @@
   "/scvtc/xygg": [
     "nczitzk"
   ],
+  "/sdo/ff14risingstones/posts/:pid?/:type?": [
+    "KarasuShin"
+  ],
+  "/sdo/ff14risingstones/strats/:pid?/:type?": [
+    "KarasuShin"
+  ],
+  "/sdo/ff14risingstones/timeline": [
+    "KarasuShin"
+  ],
+  "/sdo/ff14risingstones/user-dynamics/:uid": [
+    "KarasuShin"
+  ],
+  "/sdo/ff14risingstones/user-posts/:uid": [
+    "KarasuShin"
+  ],
+  "/sdo/ff14risingstones/user-resently/:uid": [
+    "KarasuShin"
+  ],
+  "/sdo/ff14risingstones/user-strats/:uid": [
+    "KarasuShin"
+  ],
   "/sdu/cmse/:type?": [
     "Ji4n1ng"
   ],
@@ -7580,7 +7614,7 @@
   "/szse/rule/:channel{.+}?": [
     "nczitzk"
   ],
-  "/szse/disclosure/listed/notice": [
+  "/szse/disclosure/listed/notice/:query?": [
     "nczitzk"
   ],
   "/szu/yz/:type?": [
