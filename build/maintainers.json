@@ -21,9 +21,6 @@
   "/163/renjian/:category?": [
     "nczitzk"
   ],
-  "/163/tech": [
-    "user"
-  ],
   "/163/today/:need_content?": [
     "nczitzk"
   ],
@@ -53,6 +50,9 @@
   ],
   "/163/news/special/:type?": [
     "nczitzk"
+  ],
+  "/163/news/tech": [
+    "user"
   ],
   "/163/open/vip": [
     "hoilc"
@@ -6538,9 +6538,6 @@
   "/qoo-app/user/:lang?/appComment/:uid": [
     "TonyRL"
   ],
-  "/qq/tech": [
-    "DIYgod"
-  ],
   "/qq/ac/comic/:id?": [],
   "/qq/ac/rank/:type?/:time?": [
     "nczitzk"
@@ -6559,6 +6556,9 @@
   ],
   "/qq/lol/news/:category?": [
     "nczitzk"
+  ],
+  "/qq/news/tech": [
+    "DIYgod"
   ],
   "/qq/pd/guild/:id/:sub?/:sort?": [
     "mobyw"
@@ -7186,6 +7186,9 @@
   ],
   "/sina/finance/stock/usstock/:cids?": [
     "TonyRL"
+  ],
+  "/sina/news/tech": [
+    "user"
   ],
   "/sinchew*": [],
   "/sis001/author/:id?": [

@@ -59,16 +59,6 @@
         "target": "/163/renjian/:category?"
       }
     ],
-    "tech": [
-      {
-        "title": "网易科技",
-        "docs": "https://docs.rsshub.app/routes/new-media",
-        "source": [
-          "/"
-        ],
-        "target": "/163/163/tech"
-      }
-    ],
     "wp.m": [
       {
         "title": "今日关注",
@@ -78,6 +68,16 @@
           "/"
         ],
         "target": "/163/today"
+      }
+    ],
+    "tech": [
+      {
+        "title": "网易科技",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/163/163/news/tech"
       }
     ],
     "vip.open": [
@@ -33805,24 +33805,6 @@
   },
   "qq.com": {
     "_name": "腾讯新闻",
-    "news": [
-      {
-        "title": "腾讯新闻科技",
-        "docs": "https://docs.rsshub.app/routes/new-media",
-        "source": [
-          "/ch/tech/"
-        ],
-        "target": "/qq/qq/tech"
-      },
-      {
-        "title": "当前作者文章",
-        "docs": "https://docs.rsshub.app/routes/new-media",
-        "source": [
-          "/omn/author/:mid"
-        ],
-        "target": "/tencent/news/author/:mid"
-      }
-    ],
     "ac": [
       {
         "title": "Unknown",
@@ -33936,6 +33918,24 @@
           "/news/index.shtml"
         ],
         "target": "/qq/lol/news/28"
+      }
+    ],
+    "news": [
+      {
+        "title": "腾讯新闻科技",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/ch/tech/"
+        ],
+        "target": "/qq/qq/news/tech"
+      },
+      {
+        "title": "当前作者文章",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/omn/author/:mid"
+        ],
+        "target": "/tencent/news/author/:mid"
       }
     ],
     "pd": [
@@ -35945,6 +35945,14 @@
           "/"
         ],
         "target": "/sina/csj"
+      },
+      {
+        "title": "新浪科技",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/sina/sina/news/tech"
       }
     ],
     "finance": [
