@@ -2,7 +2,7 @@ import { type Data, type DataItem, type Route, ViewType } from '@/types';
 import { load } from 'cheerio';
 import puppeteer from '@/utils/puppeteer';
 import cache from '@/utils/cache';
-import { parseDate } from '@/utils/parse-date';
+import { parseDate, parseRelativeDate } from '@/utils/parse-date';
 import { type Context } from 'hono';
 
 const handler = async (ctx: Context): Promise<Data> => {
@@ -43,24 +43,16 @@ const handler = async (ctx: Context): Promise<Data> => {
             const timeText = timeElement.text().trim();
             
             if (title && link) {
-                // Parse relative time (e.g., "15小时前")
-                let pubDate;
-                if (timeText.includes('小时前')) {
-                    const hours = parseInt(timeText.replace('小时前', ''));
-                    pubDate = new Date(Date.now() - hours * 60 * 60 * 1000);
-                } else if (timeText.includes('分钟前')) {
-                    const minutes = parseInt(timeText.replace('分钟前', ''));
-                    pubDate = new Date(Date.now() - minutes * 60 * 1000);
-                } else {
-                    pubDate = parseDate(timeText);
-                }
+                // Parse relative time using RSSHub utility
+                const parsedDate = parseRelativeDate(timeText);
+                const pubDate = parsedDate instanceof Date ? parsedDate : parseDate(timeText);
                 
                 items.push({
                     title,
                     link: link.startsWith('http') ? link : `${baseUrl}${link}`,
                     description: image ? `<img src="${image}" alt="${title}"><br>${title}` : title,
                     author: '腾讯科技',
-                    pubDate: pubDate?.toUTCString(),
+                    pubDate: pubDate.toUTCString(),
                     guid: link,
                 });
             }
