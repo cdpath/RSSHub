@@ -301,6 +301,11 @@ const middleware: MiddlewareHandler = async (ctx, next) => {
         // fulltext
         if (ctx.req.query('mode')?.toLowerCase() === 'fulltext') {
             const tasks = data.item.map(async (item) => {
+                // Skip items that have already been processed with custom fulltext
+                if ((item as any)._customFulltext) {
+                    return;
+                }
+
                 const { link, author, description } = item;
                 const parsed_result: any = await cache.tryGet(`mercury-cache-${link}`, async () => {
                     if (link) {

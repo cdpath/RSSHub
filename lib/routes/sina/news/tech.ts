@@ -5,6 +5,51 @@ import { parseRelativeDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 import dayjs from 'dayjs';
 import { type Context } from 'hono';
+import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
+
+// Custom fulltext extraction function for Sina articles
+const fetchSinaArticle = async (item: DataItem): Promise<DataItem> => {
+    return cache.tryGet(`sina-article-${item.link}`, async () => {
+        try {
+            const response = await ofetch(item.link as string);
+            const $ = load(response);
+            
+            // Target the #artibody element specifically and get only its direct content
+            const artibodyElement = $('#artibody');
+            
+            if (artibodyElement.length > 0) {
+                // Clone the element to avoid modifying the original DOM
+                const $content = artibodyElement.clone();
+                
+                // Remove unwanted elements from within artibody
+                $content.find('script, style').remove();
+                $content.find('.ad, .advertisement, [class*="ad"], [id*="ad"]').remove();
+                $content.find('.share, .related, .recommend, .comment').remove();
+                $content.find('.img_wrapper, .ct_hqimg, .hqimg_wrapper').remove(); // Remove stock chart wrappers
+                $content.find('.article-copyright, .copyright').remove();
+                $content.find('[class*="share"], [class*="recommend"]').remove();
+                $content.find('.sinaads, [class*="sina-ads"]').remove();
+                
+                // Get the cleaned HTML content
+                const cleanedContent = $content.html();
+                
+                if (cleanedContent && cleanedContent.trim().length > 0) {
+                    return {
+                        ...item,
+                        description: cleanedContent,
+                    };
+                }
+            }
+            
+            // Fallback: if #artibody not found, return original item
+            return item;
+        } catch (error) {
+            // If extraction fails, return original item
+            return item;
+        }
+    });
+};
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const handler = async (ctx: Context): Promise<Data> => {
@@ -85,14 +130,19 @@ const handler = async (ctx: Context): Promise<Data> => {
             const timeText = timeElement.text().trim();
 
             if (title && link && !seenLinks.has(link)) {
+                const fullLink = link.startsWith('http') ? link : `https:${link}`;
+                
+                if (!fullLink.startsWith('https://finance.sina.com.cn/')) {
+                    return; // Skip non-finance items
+                }
+                
                 seenLinks.add(link);
 
-                // Parse date using custom parser
                 const pubDate = parseSinaDate(timeText);
 
                 items.push({
                     title,
-                    link: link.startsWith('http') ? link : `https:${link}`,
+                    link: fullLink,
                     description: image ? `<img src="${image}" alt="${title}"><br>${title}` : title,
                     author: '新浪科技',
                     pubDate: timezone(pubDate, 8).toUTCString(),
@@ -101,11 +151,22 @@ const handler = async (ctx: Context): Promise<Data> => {
             }
         });
 
+        const shouldFetchFulltext = ctx.req.query('fulltext') === 'true' || ctx.req.query('mode')?.toLowerCase() === 'fulltext';
+        const finalItems = shouldFetchFulltext 
+            ? await Promise.all(items.map(item => fetchSinaArticle(item)))
+            : items;
+
+        if (shouldFetchFulltext) {
+            finalItems.forEach(item => {
+                (item as any)._customFulltext = true;
+            });
+        }
+
         return {
             title: '新浪科技',
             link: techUrl,
             description: '新浪科技频道最新资讯',
-            item: items,
+            item: finalItems,
         };
     } catch (error) {
         await browser.close();
@@ -119,6 +180,7 @@ export const route: Route = {
     maintainers: ['user'],
     handler,
     example: '/sina/news/tech',
+    parameters: {},
     categories: ['new-media', 'popular'],
     features: {
         requireConfig: false,
@@ -129,7 +191,8 @@ export const route: Route = {
         supportPodcast: false,
         supportScihub: false,
     },
-    description: `新浪科技频道`,
+    description: `新浪科技频道
+- \`mode=fulltext\`：\`/sina/news/tech?mode=fulltext\``,
     radar: [
         {
             source: ['tech.sina.com.cn/'],

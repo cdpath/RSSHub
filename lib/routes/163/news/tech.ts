@@ -4,6 +4,49 @@ import puppeteer from '@/utils/puppeteer';
 import cache from '@/utils/cache';
 import { parseDate, parseRelativeDate } from '@/utils/parse-date';
 import { type Context } from 'hono';
+import ofetch from '@/utils/ofetch';
+
+// Custom fulltext extraction function for 163 articles
+const fetch163Article = async (item: DataItem): Promise<DataItem> => {
+    return cache.tryGet(`163-article-${item.link}`, async () => {
+        try {
+            const response = await ofetch(item.link as string);
+            const $ = load(response);
+            
+            // Target the div.post_body element specifically
+            const postBodyElement = $('div.post_body');
+            
+            if (postBodyElement.length > 0) {
+                // Clone the element to avoid modifying the original DOM
+                const $content = postBodyElement.clone();
+                
+                // Remove unwanted elements from within post_body
+                $content.find('script, style').remove();
+                $content.find('.ad, .advertisement, [class*="ad"], [id*="ad"]').remove();
+                $content.find('.share, .related, .recommend, .comment').remove();
+                $content.find('.copyright, .article-copyright').remove();
+                $content.find('[class*="share"], [class*="recommend"]').remove();
+                $content.find('.netease-ads, [class*="netease-ad"]').remove();
+                
+                // Get the cleaned HTML content
+                const cleanedContent = $content.html();
+                
+                if (cleanedContent && cleanedContent.trim().length > 0) {
+                    return {
+                        ...item,
+                        description: cleanedContent,
+                    };
+                }
+            }
+            
+            // Fallback: if div.post_body not found, return original item
+            return item;
+        } catch (error) {
+            // If extraction fails, return original item
+            return item;
+        }
+    });
+};
 
 const handler = async (ctx: Context): Promise<Data> => {
     const baseUrl = 'https://tech.163.com';
@@ -57,11 +100,22 @@ const handler = async (ctx: Context): Promise<Data> => {
             }
         });
 
+        const shouldFetchFulltext = ctx.req.query('fulltext') === 'true' || ctx.req.query('mode')?.toLowerCase() === 'fulltext';
+        const finalItems = shouldFetchFulltext 
+            ? await Promise.all(items.map(item => fetch163Article(item)))
+            : items;
+
+        if (shouldFetchFulltext) {
+            finalItems.forEach(item => {
+                (item as any)._customFulltext = true;
+            });
+        }
+
         return {
             title: '网易科技',
             link: techUrl,
             description: '网易科技频道最新资讯',
-            item: items,
+            item: finalItems,
         };
     } catch (error) {
         await browser.close();
@@ -85,7 +139,13 @@ export const route: Route = {
         supportPodcast: false,
         supportScihub: false,
     },
-    description: `网易科技频道`,
+    description: `网易科技频道
+
+支持全文输出，使用以下任一参数获取完整文章内容：
+- \`fulltext=true\`：\`/163/news/tech?fulltext=true\`
+- \`mode=fulltext\`：\`/163/news/tech?mode=fulltext\`
+
+该路由使用自定义内容提取，专门针对网易网页结构优化，提供更干净的文章内容。`,
     radar: [
         {
             source: ['tech.163.com/'],
