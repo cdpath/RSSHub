@@ -14115,6 +14115,19 @@
       }
     ]
   },
+  "eet-china.com": {
+    "_name": "电子工程专辑",
+    "www": [
+      {
+        "title": "EE Times China 新闻",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/news/"
+        ],
+        "target": "/eet-china/eet-china/news"
+      }
+    ]
+  },
   "egsea.com": {
     "_name": "e 公司",
     ".": [

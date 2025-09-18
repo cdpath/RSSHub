@@ -2483,6 +2483,9 @@
   "/ecust/jwc/:category?": [
     "lxl66566"
   ],
+  "/eet-china/news": [
+    "user"
+  ],
   "/egsea/flash": [
     "hillerliao"
   ],
