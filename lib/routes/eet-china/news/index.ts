@@ -5,48 +5,7 @@ import { parseRelativeDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 import dayjs from 'dayjs';
 import { type Context } from 'hono';
-import cache from '@/utils/cache';
-import ofetch from '@/utils/ofetch';
 
-// Custom fulltext extraction function for EET China articles
-const fetchEETArticle = async (item: DataItem): Promise<DataItem> => {
-    return cache.tryGet(`eet-article-${item.link}`, async () => {
-        try {
-            const response = await ofetch(item.link as string);
-            const $ = load(response);
-
-            // Target the div.article_body element specifically for EET China
-            const articleContent = $('div.article_body').first();
-
-            if (articleContent.length > 0) {
-                // Clone the element to avoid modifying the original DOM
-                const $content = articleContent.clone();
-
-                // Remove unwanted elements
-                $content.find('script, style').remove();
-                $content.find('.ad, .advertisement, [class*="ad"], [id*="ad"]').remove();
-                $content.find('.share, .related, .recommend, .comment').remove();
-                $content.find('.social-share, .tags, .author-info').remove();
-
-                // Get the cleaned HTML content
-                const cleanedContent = $content.html();
-
-                if (cleanedContent && cleanedContent.trim().length > 0) {
-                    return {
-                        ...item,
-                        description: cleanedContent,
-                    };
-                }
-            }
-
-            // Fallback: if no content found, return original item
-            return item;
-        } catch (error) {
-            // If extraction fails, return original item
-            return item;
-        }
-    });
-};
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const handler = async (ctx: Context): Promise<Data> => {
@@ -104,10 +63,10 @@ const handler = async (ctx: Context): Promise<Data> => {
 
             const title = titleElement.text().trim();
             const link = linkElement.attr('href');
-            let image = imageElement.attr('src') || imageElement.attr('data-original');
-            // Handle protocol-relative URLs
-            if (image && image.startsWith('//')) {
-                image = `https:${image}`;
+            let image = imageElement.attr('data-original') || imageElement.attr('src');
+            // Convert relative URLs to absolute URLs
+            if (image && !image.startsWith('http')) {
+                image = image.startsWith('//') ? `https:${image}` : `${baseUrl}${image}`;
             }
             const timeText = timeElement.text().trim();
             const author = authorElement.text().trim();
@@ -123,30 +82,20 @@ const handler = async (ctx: Context): Promise<Data> => {
                 items.push({
                     title,
                     link: fullLink,
-                    description: image ? `<img src="${image}" alt="${title}"><br>${description || title}` : (description || title),
+                    description: description || title,
                     author: author || 'EE Times China',
                     pubDate: timezone(pubDate, 8).toUTCString(),
                     guid: link,
+                    ...(image && { image }),
                 });
             }
         });
-
-        const shouldFetchFulltext = ctx.req.query('fulltext') === 'true' || ctx.req.query('mode')?.toLowerCase() === 'fulltext';
-        const finalItems = shouldFetchFulltext
-            ? await Promise.all(items.map(item => fetchEETArticle(item)))
-            : items;
-
-        if (shouldFetchFulltext) {
-            finalItems.forEach(item => {
-                (item as any)._customFulltext = true;
-            });
-        }
 
         return {
             title: 'EE Times China 新闻',
             link: newsUrl,
             description: 'EE Times China 电子工程专辑最新资讯',
-            item: finalItems,
+            item: items,
         };
     } catch (error) {
         await browser.close();
@@ -171,8 +120,7 @@ export const route: Route = {
         supportPodcast: false,
         supportScihub: false,
     },
-    description: `EE Times China 电子工程专辑
-- \`mode=fulltext\`：\`/eet-china/news?mode=fulltext\``,
+    description: 'EE Times China 电子工程专辑',
     radar: [
         {
             source: ['www.eet-china.com/news/'],
