@@ -48244,8 +48244,7 @@ export default {
           "nczitzk"
         ],
         "categories": [
-          "government",
-          "popular"
+          "government"
         ],
         "radar": [
           {
@@ -87758,7 +87757,8 @@ export default {
       "/pornstar/:username/:language?/:sort?": {
         "path": "/pornstar/:username/:language?/:sort?",
         "categories": [
-          "multimedia"
+          "multimedia",
+          "popular"
         ],
         "view": 3,
         "example": "/pornhub/pornstar/june-liu/www/mr",
